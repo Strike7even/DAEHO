@@ -24,7 +24,7 @@ async function getSheets() {
   return google.sheets({ version: 'v4', auth: auth as never });
 }
 
-const SPREADSHEET_ID = () => process.env.GOOGLE_SPREADSHEET_ID!;
+const SPREADSHEET_ID = () => stripBom(process.env.GOOGLE_SPREADSHEET_ID ?? '');
 
 // 행 데이터를 Transaction 객체로 변환
 function rowToTransaction(row: (string | number)[], rowIndex: number): Transaction {
