@@ -7,7 +7,8 @@ export async function GET() {
     return NextResponse.json(transactions);
   } catch (error) {
     console.error('거래내역 조회 오류:', error);
-    return NextResponse.json({ error: '데이터 조회 실패' }, { status: 500 });
+    const msg = error instanceof Error ? error.message : String(error);
+    return NextResponse.json({ error: '데이터 조회 실패', detail: msg }, { status: 500 });
   }
 }
 
