@@ -5,11 +5,15 @@ import { calculate } from './calculations';
 const SHEET_NAME = '거래내역';
 const DATA_START_ROW = 3; // 1행: 그룹헤더, 2행: 컬럼헤더, 3행~: 데이터
 
+function stripBom(s: string): string {
+  return s.charCodeAt(0) === 0xfeff ? s.slice(1) : s;
+}
+
 function getAuth() {
   return new google.auth.GoogleAuth({
     credentials: {
       client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      private_key: stripBom(process.env.GOOGLE_PRIVATE_KEY ?? '').replace(/\\n/g, '\n'),
     },
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
