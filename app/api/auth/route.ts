@@ -6,7 +6,12 @@ const AUTH_COOKIE = 'sales_auth';
 export async function POST(request: NextRequest) {
   const { password } = await request.json();
 
-  if (password?.trim() !== process.env.APP_PASSWORD?.trim()) {
+  const stored = process.env.APP_PASSWORD ?? '';
+  console.log('[auth] input len:', password?.length, 'stored len:', stored.length,
+    'input bytes:', [...(password ?? '')].map(c => c.charCodeAt(0)),
+    'stored bytes:', [...stored].map(c => c.charCodeAt(0)));
+
+  if (password?.trim() !== stored.trim()) {
     return NextResponse.json({ error: '비밀번호가 틀렸습니다.' }, { status: 401 });
   }
 
