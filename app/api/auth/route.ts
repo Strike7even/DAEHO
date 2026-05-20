@@ -6,7 +6,7 @@ const AUTH_COOKIE = 'sales_auth';
 export async function POST(request: NextRequest) {
   const { password } = await request.json();
 
-  if (password !== process.env.APP_PASSWORD) {
+  if (password?.trim() !== process.env.APP_PASSWORD?.trim()) {
     return NextResponse.json({ error: '비밀번호가 틀렸습니다.' }, { status: 401 });
   }
 
