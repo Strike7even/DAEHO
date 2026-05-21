@@ -86,13 +86,13 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
   return (
     <form onSubmit={handleSubmit} className="space-y-5 max-w-5xl">
       {error && (
-        <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+        <div className="p-3 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 rounded-lg text-sm">
           {error}
         </div>
       )}
 
       {/* 기본정보 */}
-      <Section title="기본정보" colorCls="bg-slate-400 text-slate-900" borderCls="border-slate-300">
+      <Section title="기본정보" colorCls="bg-slate-400 dark:bg-slate-700 text-slate-900 dark:text-slate-100" borderCls="border-slate-300 dark:border-slate-700">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Field label="로트번호" required>
             <input
@@ -101,7 +101,7 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
               onChange={setText('lotNumber')}
               placeholder="예: CY010"
               required
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </Field>
           <Field label="수입일" required>
@@ -110,14 +110,14 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
               value={values.importDate}
               onChange={setText('importDate')}
               required
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </Field>
           <Field label="인쇄형태">
             <select
               value={values.printType}
               onChange={setText('printType')}
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+              className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {PRINT_TYPES.map(t => (
                 <option key={t} value={t}>{t}</option>
@@ -128,7 +128,7 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
       </Section>
 
       {/* 수입원가 */}
-      <Section title="수입원가" colorCls="bg-blue-400 text-blue-900" borderCls="border-blue-300">
+      <Section title="수입원가" colorCls="bg-blue-400 dark:bg-blue-900 text-blue-900 dark:text-blue-100" borderCls="border-blue-300 dark:border-blue-800">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <NumField label="입고수량 (장)" value={values.inboundQty} onChange={setNum('inboundQty')} />
           <NumField label="카드단가 (¥)" value={values.cardUnitPriceJpy} onChange={setNum('cardUnitPriceJpy')} step="0.01" />
@@ -144,7 +144,7 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
       </Section>
 
       {/* 가공/납품 */}
-      <Section title="가공/납품" colorCls="bg-emerald-400 text-emerald-900" borderCls="border-emerald-300">
+      <Section title="가공/납품" colorCls="bg-emerald-400 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-100" borderCls="border-emerald-300 dark:border-emerald-800">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <NumField label="납품박스수" value={values.deliveryBoxQty} onChange={setNum('deliveryBoxQty')} />
           <CalcField label="납품수량 (장)">{fmtNum(calc.deliveryQty)}</CalcField>
@@ -157,7 +157,7 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
       </Section>
 
       {/* 매출/단가 */}
-      <Section title="매출/단가" colorCls="bg-violet-400 text-violet-900" borderCls="border-violet-300">
+      <Section title="매출/단가" colorCls="bg-violet-400 dark:bg-violet-900 text-violet-900 dark:text-violet-100" borderCls="border-violet-300 dark:border-violet-800">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <CalcField label="가공전 제품단가">{fmtKrw(calc.priceBeforeProcessing)}</CalcField>
           <CalcField label="실제 제품단가">{fmtKrw(calc.actualUnitPrice)}</CalcField>
@@ -167,12 +167,12 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
       </Section>
 
       {/* 수익성 */}
-      <Section title="수익성" colorCls="bg-amber-400 text-amber-900" borderCls="border-amber-300">
+      <Section title="수익성" colorCls="bg-amber-400 dark:bg-amber-900 text-amber-900 dark:text-amber-100" borderCls="border-amber-300 dark:border-amber-800">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <CalcField label="총원가">{fmtKrw(calc.totalCost)}</CalcField>
           <CalcField label="원가율">{fmtRate(calc.costRate)}</CalcField>
           <CalcField label="총마진">
-            <span className={calc.totalMargin >= 0 ? 'text-emerald-700 font-semibold' : 'text-red-600 font-semibold'}>
+            <span className={calc.totalMargin >= 0 ? 'text-emerald-600 dark:text-emerald-400 font-semibold' : 'text-red-600 dark:text-red-400 font-semibold'}>
               {fmtKrw(calc.totalMargin)}
             </span>
           </CalcField>
@@ -180,7 +180,7 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
       </Section>
 
       {/* 세무/정산 */}
-      <Section title="세무/정산" colorCls="bg-rose-400 text-rose-900" borderCls="border-rose-300">
+      <Section title="세무/정산" colorCls="bg-rose-400 dark:bg-rose-900 text-rose-900 dark:text-rose-100" borderCls="border-rose-300 dark:border-rose-800">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <Field label="발행비율" hint="0~1 입력 (예: 0.9 = 90%)">
             <input
@@ -189,19 +189,19 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
               onChange={setNum('invoiceRatio')}
               min="0" max="1" step="0.01"
               placeholder="0.9"
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </Field>
           <CalcField label="발행매출">{fmtKrw(calc.invoicedSales)}</CalcField>
           <CalcField label="미발행매출">{fmtKrw(calc.uninvoicedSales)}</CalcField>
           <CalcField label="발행기준마진">
-            <span className={calc.invoiceMargin >= 0 ? 'text-emerald-700 font-semibold' : 'text-red-600 font-semibold'}>
+            <span className={calc.invoiceMargin >= 0 ? 'text-emerald-600 dark:text-emerald-400 font-semibold' : 'text-red-600 dark:text-red-400 font-semibold'}>
               {fmtKrw(calc.invoiceMargin)}
             </span>
           </CalcField>
           <NumField label="입금액 (원)" value={values.receivedAmount} onChange={setNum('receivedAmount')} />
           <CalcField label="정산잔액">
-            <span className={calc.settlementBalance > 0 ? 'text-red-600 font-bold' : 'text-emerald-700 font-semibold'}>
+            <span className={calc.settlementBalance > 0 ? 'text-red-600 dark:text-red-400 font-bold' : 'text-emerald-600 dark:text-emerald-400 font-semibold'}>
               {fmtKrw(calc.settlementBalance)}
               {calc.settlementBalance > 0 && ' ⚠'}
             </span>
@@ -214,7 +214,7 @@ export default function TransactionForm({ mode, transactionId, initial }: Props)
         <button
           type="button"
           onClick={() => router.push('/transactions')}
-          className="px-5 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          className="px-5 py-2 text-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
         >
           취소
         </button>
@@ -246,7 +246,7 @@ function Section({
   return (
     <section className={`border ${borderCls} rounded-lg overflow-hidden`}>
       <div className={`${colorCls} px-4 py-2 font-semibold text-sm`}>{title}</div>
-      <div className="p-4 bg-white">{children}</div>
+      <div className="p-4 bg-white dark:bg-gray-800">{children}</div>
     </section>
   );
 }
@@ -264,10 +264,10 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-xs font-medium text-gray-600 mb-1">
+      <label className="block text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">
         {label}
         {required && <span className="text-red-500 ml-0.5">*</span>}
-        {hint && <span className="ml-1 text-gray-400 font-normal">{hint}</span>}
+        {hint && <span className="ml-1 text-gray-400 dark:text-gray-500 font-normal">{hint}</span>}
       </label>
       {children}
     </div>
@@ -302,7 +302,7 @@ function NumField({
 function CalcField({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <Field label={label} hint="(자동)">
-      <div className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg text-gray-600 italic min-h-[38px]">
+      <div className="w-full px-3 py-2 text-sm bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-600 dark:text-gray-300 italic min-h-[38px]">
         {children}
       </div>
     </Field>

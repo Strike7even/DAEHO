@@ -26,9 +26,9 @@ interface Group {
 const GROUPS: Group[] = [
   {
     name: '기본정보',
-    headerCls: 'bg-slate-400 text-slate-900',
-    inputColCls: 'bg-slate-100',
-    calcColCls: 'bg-slate-200',
+    headerCls: 'bg-slate-400 dark:bg-slate-700 text-slate-900 dark:text-slate-100',
+    inputColCls: 'bg-slate-100 dark:bg-gray-800',
+    calcColCls: 'bg-slate-200 dark:bg-gray-700',
     cols: [
       { key: 'lotNumber', label: '로트번호', format: 'text' },
       { key: 'importDate', label: '수입일', format: 'text' },
@@ -37,9 +37,9 @@ const GROUPS: Group[] = [
   },
   {
     name: '수입원가',
-    headerCls: 'bg-blue-400 text-blue-900',
-    inputColCls: 'bg-blue-50',
-    calcColCls: 'bg-blue-200',
+    headerCls: 'bg-blue-400 dark:bg-blue-900 text-blue-900 dark:text-blue-100',
+    inputColCls: 'bg-blue-50 dark:bg-gray-800',
+    calcColCls: 'bg-blue-200 dark:bg-gray-700',
     cols: [
       { key: 'inboundQty', label: '입고수량', format: 'num' },
       { key: 'cardUnitPriceJpy', label: '카드단가(¥)', format: 'jpy' },
@@ -55,9 +55,9 @@ const GROUPS: Group[] = [
   },
   {
     name: '가공/납품',
-    headerCls: 'bg-emerald-400 text-emerald-900',
-    inputColCls: 'bg-emerald-50',
-    calcColCls: 'bg-emerald-200',
+    headerCls: 'bg-emerald-400 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-100',
+    inputColCls: 'bg-emerald-50 dark:bg-gray-800',
+    calcColCls: 'bg-emerald-200 dark:bg-gray-700',
     cols: [
       { key: 'deliveryBoxQty', label: '납품박스수', format: 'num' },
       { key: 'deliveryQty', label: '납품수량', format: 'num', calc: true },
@@ -70,9 +70,9 @@ const GROUPS: Group[] = [
   },
   {
     name: '매출/단가',
-    headerCls: 'bg-violet-400 text-violet-900',
-    inputColCls: 'bg-violet-50',
-    calcColCls: 'bg-violet-200',
+    headerCls: 'bg-violet-400 dark:bg-violet-900 text-violet-900 dark:text-violet-100',
+    inputColCls: 'bg-violet-50 dark:bg-gray-800',
+    calcColCls: 'bg-violet-200 dark:bg-gray-700',
     cols: [
       { key: 'priceBeforeProcessing', label: '가공전단가', format: 'krw', calc: true },
       { key: 'actualUnitPrice', label: '실제단가', format: 'krw', calc: true },
@@ -82,9 +82,9 @@ const GROUPS: Group[] = [
   },
   {
     name: '수익성',
-    headerCls: 'bg-amber-400 text-amber-900',
-    inputColCls: 'bg-amber-50',
-    calcColCls: 'bg-amber-200',
+    headerCls: 'bg-amber-400 dark:bg-amber-900 text-amber-900 dark:text-amber-100',
+    inputColCls: 'bg-amber-50 dark:bg-gray-800',
+    calcColCls: 'bg-amber-200 dark:bg-gray-700',
     cols: [
       { key: 'totalCost', label: '총원가', format: 'krw', calc: true },
       { key: 'costRate', label: '원가율', format: 'rate', calc: true },
@@ -93,9 +93,9 @@ const GROUPS: Group[] = [
   },
   {
     name: '세무/정산',
-    headerCls: 'bg-rose-400 text-rose-900',
-    inputColCls: 'bg-rose-50',
-    calcColCls: 'bg-rose-200',
+    headerCls: 'bg-rose-400 dark:bg-rose-900 text-rose-900 dark:text-rose-100',
+    inputColCls: 'bg-rose-50 dark:bg-gray-800',
+    calcColCls: 'bg-rose-200 dark:bg-gray-700',
     cols: [
       { key: 'invoiceRatio', label: '발행비율', format: 'rate' },
       { key: 'invoicedSales', label: '발행매출', format: 'krw', calc: true },
@@ -145,7 +145,7 @@ export default function TransactionTable({ transactions }: { transactions: Trans
   }
 
   return (
-    <div className="overflow-x-auto border border-gray-200 rounded-lg shadow-sm">
+    <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
       <table className="text-xs border-collapse whitespace-nowrap">
         <thead>
           {/* 그룹 헤더 */}
@@ -154,12 +154,12 @@ export default function TransactionTable({ transactions }: { transactions: Trans
               <th
                 key={g.name}
                 colSpan={g.cols.length}
-                className={`${g.headerCls} font-semibold text-center px-2 py-1.5 border border-gray-300`}
+                className={`${g.headerCls} font-semibold text-center px-2 py-1.5 border border-gray-300 dark:border-gray-600`}
               >
                 {g.name}
               </th>
             ))}
-            <th className="bg-gray-300 text-gray-900 font-semibold text-center px-2 py-1.5 border border-gray-300">
+            <th className="bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-semibold text-center px-2 py-1.5 border border-gray-300 dark:border-gray-600">
               작업
             </th>
           </tr>
@@ -170,14 +170,14 @@ export default function TransactionTable({ transactions }: { transactions: Trans
                 <th
                   key={col.key}
                   title={col.calc ? '자동계산' : '직접입력'}
-                  className={`${col.calc ? g.calcColCls : g.inputColCls} font-medium text-center px-2 py-1.5 border border-gray-300`}
+                  className={`${col.calc ? g.calcColCls : g.inputColCls} font-medium text-center px-2 py-1.5 border border-gray-300 dark:border-gray-600 dark:text-gray-200`}
                 >
                   {col.label}
-                  {col.calc && <span className="text-gray-400 ml-0.5">*</span>}
+                  {col.calc && <span className="text-gray-400 dark:text-gray-500 ml-0.5">*</span>}
                 </th>
               ))
             )}
-            <th className="bg-gray-100 px-2 py-1.5 border border-gray-300 min-w-[80px]" />
+            <th className="bg-gray-100 dark:bg-gray-800 px-2 py-1.5 border border-gray-300 dark:border-gray-600 min-w-[80px]" />
           </tr>
         </thead>
         <tbody>
@@ -186,8 +186,8 @@ export default function TransactionTable({ transactions }: { transactions: Trans
             return (
               <tr
                 key={t.id}
-                className={`hover:brightness-95 transition-all ${
-                  isUnsettled ? 'bg-yellow-50' : 'bg-white'
+                className={`transition-all hover:brightness-95 ${
+                  isUnsettled ? 'bg-yellow-50 dark:bg-yellow-900/20' : 'bg-white dark:bg-gray-900'
                 }`}
               >
                 {GROUPS.flatMap(g =>
@@ -195,13 +195,13 @@ export default function TransactionTable({ transactions }: { transactions: Trans
                     const isSettlementBalance = col.key === 'settlementBalance';
                     const isLotNumber = col.key === 'lotNumber';
 
-                    const base = 'px-2 py-1 border border-gray-200';
-                    const align = isLotNumber ? 'text-left font-semibold text-gray-800' : 'text-right';
+                    const base = 'px-2 py-1 border border-gray-200 dark:border-gray-700';
+                    const align = isLotNumber ? 'text-left font-semibold text-gray-800 dark:text-gray-200' : 'text-right';
                     let accent = '';
                     if (isSettlementBalance) {
-                      accent = isUnsettled ? 'text-red-600 font-bold' : 'text-emerald-700 font-semibold';
+                      accent = isUnsettled ? 'text-red-600 dark:text-red-400 font-bold' : 'text-emerald-600 dark:text-emerald-400 font-semibold';
                     } else if (col.calc) {
-                      accent = 'text-gray-500 italic';
+                      accent = 'text-gray-700 dark:text-gray-400 italic';
                     }
 
                     return (
@@ -218,14 +218,14 @@ export default function TransactionTable({ transactions }: { transactions: Trans
                   <div className="flex gap-1 justify-center">
                     <Link
                       href={`/transactions/${t.id}`}
-                      className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors"
+                      className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
                     >
                       수정
                     </Link>
                     <button
                       onClick={() => handleDelete(t.id, t.lotNumber)}
                       disabled={deletingId === t.id}
-                      className="px-2 py-0.5 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors disabled:opacity-50"
+                      className="px-2 py-0.5 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors disabled:opacity-50"
                     >
                       {deletingId === t.id ? '…' : '삭제'}
                     </button>
@@ -236,7 +236,7 @@ export default function TransactionTable({ transactions }: { transactions: Trans
           })}
         </tbody>
       </table>
-      <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 text-xs text-gray-500">
+      <div className="px-3 py-2 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400">
         * 표시된 컬럼은 자동계산 값입니다. 총 {transactions.length}건
       </div>
     </div>

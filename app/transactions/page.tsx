@@ -18,7 +18,7 @@ export default async function TransactionsPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <h1 className="text-xl font-semibold text-gray-900">거래내역</h1>
+        <h1 className="text-xl font-semibold text-gray-900 dark:text-white">거래내역</h1>
         <Link
           href="/transactions/new"
           className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -28,7 +28,7 @@ export default async function TransactionsPage() {
       </div>
 
       {fetchError ? (
-        <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+        <div className="p-4 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 rounded-lg text-sm">
           {fetchError}
         </div>
       ) : (

@@ -36,10 +36,10 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-xl font-semibold text-gray-900">대시보드</h1>
+      <h1 className="text-xl font-semibold text-gray-900 dark:text-white">대시보드</h1>
 
       {fetchError ? (
-        <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+        <div className="p-4 bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 rounded-lg text-sm">
           {fetchError}
         </div>
       ) : (
@@ -56,16 +56,16 @@ export default async function DashboardPage() {
             <KpiCard label="평균 불량률" value={fmtRate(avgDefectRate)} />
           </div>
 
-          <div className="bg-white rounded-xl border border-gray-200 p-5">
-            <h2 className="text-sm font-semibold text-gray-700 mb-4">로트별 마진율</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5">
+            <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">로트별 마진율</h2>
             <MarginChart data={chartData} />
           </div>
 
-          <div className="bg-white rounded-xl border border-amber-200 p-5">
+          <div className="bg-white dark:bg-gray-800 rounded-xl border border-amber-200 dark:border-amber-800 p-5">
             <div className="flex items-center gap-2 mb-4">
-              <h2 className="text-sm font-semibold text-gray-700">미정산 건</h2>
+              <h2 className="text-sm font-semibold text-gray-700 dark:text-gray-300">미정산 건</h2>
               {unsettled.length > 0 && (
-                <span className="px-2 py-0.5 text-xs bg-amber-100 text-amber-700 rounded-full font-medium">
+                <span className="px-2 py-0.5 text-xs bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 rounded-full font-medium">
                   {unsettled.length}건
                 </span>
               )}

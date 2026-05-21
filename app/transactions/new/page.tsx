@@ -23,7 +23,7 @@ export default async function NewTransactionPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold text-gray-900 mb-5">신규 거래 입력</h1>
+      <h1 className="text-xl font-semibold text-gray-900 dark:text-white mb-5">신규 거래 입력</h1>
       <TransactionForm mode="create" initial={defaults} />
     </div>
   );
